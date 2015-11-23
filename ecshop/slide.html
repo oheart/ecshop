@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/slick.css">
+    <link rel="stylesheet" href="css/slick-theme.css">
+    <script src="//cdn.bootcss.com/jquery/2.1.3/jquery.js"></script>
+    <script src="js/slick.min.js"></script>
+</head>
+<body>
+<div  class="ele">
+    <div><h3>1</h3></div>
+    <div><h3>2</h3></div>
+    <div><h3>3</h3></div>
+    <div><h3>4</h3></div>
+    <div><h3>5</h3></div>
+    <div><h3>6</h3></div>
+</div>
+<script>
+    $(document).ready(function(){
+        $(".ele").slick({
+            dots: true,
+            speed: 500
+        });
+    });
+</script>
+</body>
+</html>

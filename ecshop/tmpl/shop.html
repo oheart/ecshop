@@ -1,0 +1,22 @@
+<md-content  layout="column">
+    <md-toolbar md-scroll-shrink class="md-warn md-toolbar-tools" layout="row" layout-align="space-around center">
+        <md-icon aria-label="菜单" flex="25 " >menu</md-icon>
+        <div class=" text-center" flex="50">
+            积分商城
+        </div>
+        <md-icon aria-label="购物车" flex="25" class="text-right" >shopping_cart</md-icon>
+    </md-toolbar>
+    <md-card class="md-whiteframe-3dp" ng-repeat="com in commodity" flex>
+        <img ng-src="{{com.img}}" class="md-card-image" alt="亿富贷">
+        <md-card-content>
+            <h2>{{com.name}}</h2>
+        </md-card-content>
+        <md-card-actions layout="row" layout-align="center center">
+            <p flex layout="row" layout-align="space-around center">
+                <span class="red md-headline">${{com.money}}</span>
+                <sup class="md-caption">{{com.number}}人兑换</sup>
+            </p>
+            <md-button class="md-button md-warn md-raised" flex>兑换</md-button>
+        </md-card-actions>
+    </md-card>
+</md-content>

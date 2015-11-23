@@ -1,0 +1,707 @@
+<section layout="row"  layout-align="center start" class="bind-height">
+    <div flex="90" class="bind-height">
+        <md-toolbar style=""  class="md-menu-toolbar">
+            <div layout="column">
+                <div layout="row" class="md-menu-toolbar md-primary" layout-padding>
+                    <div flex="25" layout layout-align="center center">
+                        <img src="./img/ff.png">
+                        <div class="blue">亿富贷积分商城</div>
+                    </div>
+                    <div flex layout layout-align="start center">
+                        <!--<md-chips ng-model="seachs.seach" flex-offset="25" class="md-primary" md-separator-keys="seachs.keys" placeholder="查询一个新的标签或者使用记忆标记" secondary-placeholder="查询一个目标并获得一个标记">
+                        </md-chips>-->
+                        <!-- autocomplete -->
+                        <div layout="row" flex-offset="15" flex="45" class="">
+                           <md-autocomplete placeholder="开启您的搜索之旅" flex
+                                             md-selected-item="self.selectedItem"
+                                             md-selected-item-change="self.selectedItemChange(item)"
+                                             md-search-text="self.searchText"
+                                             md-search-text-change="self.searchTextChange(self.searchText)"
+                                             md-items="item in self.querySearch(self.searchText)"
+                                             md-item-text="item.name" md-min-length="0">
+                               <!--
+                                   md-selected-item:选中的对象
+                                   md-selected-item-change:更改后的对象
+                                   md-search-text:搜索关键字的KEY
+                                   md-search-text-change:更改后的KEY
+                                   md-items:列表
+                                   md-item:选中的item
+                               -->
+                               <md-item-template>
+                                   <div layout="row" layout="center center" >
+                                       <div layout="column" layout="center center">
+                                           <img src="{{item.img}}"  class="md-avatar" height="100%" width="48px"/>
+                                       </div>
+                                       <div flex >
+                                           <span md-highlight-text="self.searchText" md-highlight-flags="^i">{{item.name}}</span>
+                                           <span >喜欢人数:{{item.like}}</span>
+                                           <span >收藏人数:{{item.collect}}</span>
+                                           <span  class="pull-right">购买</span>
+                                       </div>
+                                   </div>
+                               </md-item-template>
+                                <md-not-found>
+                                    目前还没有这款商品,你可以点击<a ng-click="self.newState(self.searchText)">我想要"{{self.searchText}}"</a>,告诉我们
+                                </md-not-found>
+                            </md-autocomplete>
+                            <md-icon md-font-icon="material-icon" class="pull-right">
+                                search
+                            </md-icon>
+                        </div>
+                    </div>
+                </div>
+                <nav layout="row">
+                    <md-toolbar-filler class="" layout  layout-padding layout-align="center center">
+                        <md-icon>apps</md-icon>
+                    </md-toolbar-filler>
+                    <div flex>
+                        <md-toolbar class="md-toolbar-tools" layout="column">
+                            <h2 class=" border-bottom-dashed" flex>全部商品分类</h2>
+                            <div  class="pull-right" layout="row">
+                            </div>
+                        </md-toolbar>
+                        <md-menu-bar>
+                            <md-menu>
+                                <button class="md-warn md-raised md-icon-button md-cornered gray"
+                                        ng-click="$mdOpenMenu($event)"  aria-label="厨具/餐具">
+                                    <md-icon>card_membership</md-icon>
+                                    厨具/餐具
+                                </button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+
+                            <md-menu>
+                                <button class="md-warn md-raised md-icon-button md-cornered gray"
+                                        ng-click="$mdOpenMenu($event)"  aria-label="家纺/日用">
+                                    <md-icon>card_membership</md-icon>
+                                    家纺/日用
+                                </button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+
+                            <md-menu flex="grow">
+                                <button class="md-warn md-raised md-icon-button md-cornered gray"
+                                        ng-click="$mdOpenMenu($event)"  aria-label="数码/电器">
+                                    <md-icon>card_membership</md-icon>
+                                    数码/电器
+                                </button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+
+                            <md-menu flex="grow">
+                                <button class="md-warn md-raised md-icon-button md-cornered gray"
+                                        ng-click="$mdOpenMenu($event)"  aria-label="车用/车饰">
+                                    <md-icon>card_membership</md-icon>
+                                    车用/车饰
+                                </button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+
+                            <md-menu flex="grow">
+                                <button class="md-warn md-raised md-icon-button md-cornered gray"
+                                        ng-click="$mdOpenMenu($event)"  aria-label="时尚/运动">
+                                    <md-icon>card_membership</md-icon>
+                                    时尚/运动
+                                </button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+
+                            <md-menu flex="grow">
+                                <button class="md-warn md-raised md-icon-button md-cornered gray"
+                                        ng-click="$mdOpenMenu($event)"  aria-label="儿童/母婴">
+                                    <md-icon>card_membership</md-icon>
+                                    儿童/母婴
+                                </button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+
+                            <md-menu flex="grow">
+                                <button class="md-warn md-raised md-icon-button md-cornered gray"
+                                        ng-click="$mdOpenMenu($event)"  aria-label="商旅/书刊">
+                                    <md-icon>card_membership</md-icon>
+                                    商旅/书刊
+                                </button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+
+                            <md-menu flex="grow">
+                                <button class="md-warn md-raised md-icon-button md-cornered gray"
+                                        ng-click="$mdOpenMenu($event)"  aria-label="生活/健康">
+                                    <md-icon>card_membership</md-icon>
+                                    生活/健康
+                                </button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+
+                            <md-menu flex="grow">
+                                <button class="md-warn md-raised md-icon-button md-cornered gray"
+                                        ng-click="$mdOpenMenu($event)"  aria-label="美食/票务">
+                                    <md-icon>card_membership</md-icon>
+                                    美食/票务
+                                </button>
+                                <md-menu-content>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button ng-click="doSomething()">
+                                            分享
+                                        </md-button>
+                                    </md-menu-item>
+                                </md-menu-content>
+                            </md-menu>
+
+                        </md-menu-bar>
+                    </div>
+                </nav>
+            </div>
+        </md-toolbar>
+        <!-- carousel -->
+        <md-content layout="row" layout-align="center center" class="full-width" style="height: 42%;position: relative;">
+            <md-list flex="15" class="md-menu-toolbar bind-height lefnav" layout="column" layout-align="center center">
+                <md-list-item ng-repeat="item in navbar" class="full-width user-pointer" ng-mouseenter="tipIn($index)" ng-mouseleave="tipOut($index)">
+                    <p class="">{{item.name}}</p>
+                    <md-icon>chevron_right</md-icon>
+                </md-list-item>
+            </md-list>
+            <div class="full-height panel-tooltip"  ng-show="$index == tipindex"  ng-repeat="item in navbar"
+                 style="position: absolute;width: 40%;top:2%;height:96%;left:18%;background-color: #fff;z-index: 999;">
+                {{item.name}}
+            </div>
+            <uib-carousel flex="85" interval="Interval" no-wrap="noWrapSlides" class="bind-height" style="overflow: hidden;">
+                <uib-slide ng-repeat="slide in slides" active="slide.active" index="slide.id" class="">
+                    <img ng-src="{{slide.image}}" style="margin:auto">
+                    <div class="carousel-caption">
+                        <h4>Slide {{slide.id}}</h4>
+                        <p>{{slide.text}}</p>
+                    </div>
+                </uib-slide>
+            </uib-carousel>
+        </md-content>
+        <!-- 便捷导航 -->
+        <div layout="row" layout-align="start center" flex class="full-width" style="height:37%">
+            <div flex="66" layout="row" layout-wrap layout-align="center center" class="bind-height">
+                <div flex="50" ng-repeat="item in subnav1" layout="row" layout-align="center center" class="half-height padding-bom">
+                    <div flex="66" layout="row" layout-align="center center" class="bind-height">
+                        {{item.title}}
+                    </div>
+                    <div flex="33" layout="row" layout-align="center center" class="margin-be bind-height bg-cover"
+                    ng-style="{'background-image':'url('+item.bg+')'}" style="">
+                    </div>
+                </div>
+            </div>
+            <div flex="33" layout="column" laytou-align="center center" class="bind-height">
+                <div flex class="half-height" >
+                    1
+                </div>
+                <div flex class="half-height">
+                    2
+                </div>
+            </div>
+          <!--  <div ng-repeat="items in subnav" layout="row"  layout-align="space-around center" class="full-width half-height">
+                <div ng-repeat="item in items" layout-fill flex layout layout-align="center center" class="bind-height">
+                    <div flex class="bind-height" layout layout-align="center center" >
+                        {{item.title}}
+                    </div>
+                    <div flex layout layout-align="center center" class="bind-height bg-cover margin-be"
+                         ng-style="{'background-image':'url('+item.bg+')'}">
+                    </div>
+                </div>
+            </div>-->
+
+        </div>
+    </div>
+</section>
+<section class="bind-height" layout="row" layout-align="center center">
+    <div flex="90"  layout="row" layout-align="space-between center" class="bind-height">
+        <div flex="75" layout="column"  layout-align="center center" class="bind-height sliders" >
+            <!-- 查看更多-->
+            <div style="height: 3%" class="full-width slider-title" style="">
+                <div class="pull-right" layout="row" layout-align="center center">
+                    <md-button class=" md-primary md-raised md-cornered" style="margin:0;">
+                        查看更多
+                    </md-button>
+                    <span class="md-caret" style="position:relative"></span>
+                </div>
+            </div>
+            <div style="height:42%;" flex layout="column" layout-align="center center">
+                <!-- slider 1 -->
+                <div flex class="ele" style="padding-top: 1%" >
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </div>
+            <div style="height: 3%" class="full-width slider-title">
+                <div class="pull-right" layout="row" layout-align="center center">
+                    <md-button class=" md-primary md-raised md-cornered" style="margin:0;">
+                        查看更多
+                    </md-button>
+                    <span class="md-caret" style="position:relative"></span>
+                </div>
+            </div>
+            <div  style="height:42%;" flex layout="column" layout-align="center center">
+                <!-- slider 2 -->
+                <div flex class="ele" style="padding-top: 1%">
+                    <md-card >
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card class="full-height">
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                    <md-card>
+                        <img data-lazy="img/QQ20150619134531.jpg">
+                        <md-card-content>
+                            <h2>这是一个平底锅</h2>
+                            <p>
+                                这个锅清仓价25块钱，大家快来买
+                            </p>
+                        </md-card-content>
+                    </md-card>
+                </div>
+            </div>
+        </div>
+        <!-- 热门排行榜 -->
+        <md-content flex="20"   class="bind-height rank">
+            <md-list class="bind-height">
+                <md-toolbar>
+                    <div class="md-toolbar-tools">热卖排行榜</div>
+                </md-toolbar>
+                <md-list-item ng-repeat="item in selling" class="user-pointer" layout="row" style="height:9%">
+                    <div flex>
+                        {{$index+1}}.{{item.name}}
+                    </div>
+                    <div flex>
+                        {{item.money}}
+                        {{item.quantity}}
+                    </div>
+                </md-list-item>
+            </md-list>
+        </md-content>
+    </div>
+</section>
+<footer style="height:37%" class="footer text-center" flex layout="column" layout-align="center center">
+    <div flex class="label-cloud full-width" layout="row" layout-align="center center">
+        <div flex class="widget">
+            <h3 class="text-primary title">关于亿富贷</h3>
+            <p class="text-muted">公司介绍</p>
+            <p class="text-muted">团队介绍</p>
+            <p class="text-muted">联系我们</p>
+            <p class="text-muted">加入我们</p>
+        </div>
+        <div flex class="widget">
+            <h3 class="text-primary title">保障/协议</h3>
+            <p class="text-muted">保障协议</p>
+            <p class="text-muted">法律保障</p>
+            <p class="text-muted">服务协议</p>
+            <p class="text-muted">隐私声明</p>
+        </div>
+        <div flex class="widget">
+            <h3 class="text-primary title">帮助中心</h3>
+            <p class="text-muted">常见问题</p>
+            <p class="text-muted">安全保障</p>
+            <p class="text-muted">投资理财</p>
+            <p class="text-muted">债券转让</p>
+        </div>
+        <div flex class="text-left widget">
+            <h3 class="text-primary title">我们一直在进步</h3>
+            <p class="text-muted">联系电话:400-027-7688</p>
+            <p class="text-muted">客服邮箱:easyfunding@yifudai.com</p>
+            <p class="text-muted">公司地址:湖北省武汉市武昌区和平大道750号</p>
+            <p class="text-muted">绿地金融国际城B3栋17层</p>
+        </div>
+    </div>
+    <div flex class="friendly-link full-width pull-left" layout-margin layout="row" layout-align="start center">
+        <div flex="5" class="margin-left text-primary">
+            友情链接
+        </div>
+        <md-button class="md-primary" >网贷之家</md-button>
+        <md-button class="md-primary">网贷天眼</md-button>
+    </div>
+    <div class="copyright text-muted red">
+        鄂ICP备15003869号-1 2014亿富贷<br/>
+        武汉亿富商务顾问有限公司 版权所有
+    </div>
+</footer>
+<!--
+<div class="bind-height" flex>
+    asdasd
+</div>-->
