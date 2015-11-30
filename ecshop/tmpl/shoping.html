@@ -11,24 +11,24 @@
                     <img ng-src="./img/ff.png" />
                 </md-fab-trigger>
                 <md-fab-actions>
-                    <!--<div ng-repeat="item in homebar">-->
-                        <!--<md-button class="md-fab md-raised md-mini" ui-sref="{{item.goState}}">-->
-                            <!--<md-tooltip md-direction="{{item.direction}}" md-visible="triggers.hover">{{item.name}}</md-tooltip>-->
-                            <!--<md-icon aria-label="{{item.name}}" class="">{{item.icons}}</md-icon>-->
-                        <!--</md-button>-->
-                    <!--</div>-->
-                    <md-button class="md-fab md-raised md-mini"  ui-sref-opts="toolbar.index">
-                        <md-tooltip md-direction="bottom" md-visible="triggers.hover">主页</md-tooltip>
-                        <md-icon>home</md-icon>
-                    </md-button>
-                    <md-button class="md-fab md-raised md-mini"  ui-sref-opts="toolbar.state">
-                        <md-tooltip md-direction="top" md-visible="triggers.hover">购物车</md-tooltip>
-                        <md-icon>more_horiz</md-icon>
-                    </md-button>
-                    <md-button class="md-fab md-raised md-mini"  href="state">
-                        <md-tooltip md-direction="bottom" md-visible="triggers.hover">订单</md-tooltip>
-                        <md-icon>shopping_cart</md-icon>
-                    </md-button>
+                    <div ng-repeat="item in homebar">
+                        <md-button class="md-fab md-raised md-mini" ui-sref="{{item.goState}}">
+                            <md-tooltip md-direction="{{item.direction}}" md-visible="triggers.hover">{{item.name}}</md-tooltip>
+                            <md-icon aria-label="{{item.name}}" class="">{{item.icons}}</md-icon>
+                        </md-button>
+                    </div>
+                    <!--<md-button class="md-fab md-raised md-mini"  ui-sref-opts="toolbar.index">-->
+                        <!--<md-tooltip md-direction="bottom" md-visible="triggers.hover">主页</md-tooltip>-->
+                        <!--<md-icon>home</md-icon>-->
+                    <!--</md-button>-->
+                    <!--<md-button class="md-fab md-raised md-mini"  ui-sref-opts="toolbar.state">-->
+                        <!--<md-tooltip md-direction="top" md-visible="triggers.hover">购物车</md-tooltip>-->
+                        <!--<md-icon>more_horiz</md-icon>-->
+                    <!--</md-button>-->
+                    <!--<md-button class="md-fab md-raised md-mini"  href="state">-->
+                        <!--<md-tooltip md-direction="bottom" md-visible="triggers.hover">订单</md-tooltip>-->
+                        <!--<md-icon>shopping_cart</md-icon>-->
+                    <!--</md-button>-->
                 </md-fab-actions>
             </md-fab-speed-dial>
 
