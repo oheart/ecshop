@@ -1,10 +1,12 @@
 <md-content>
-    <section layout='column' layout-align="start center" class="full-width">
-        <div flex="90">
-            options
-        </div>
-        <div flex-gt-lg="80" flex flex-offset-gt-lg="10" layout="row" layout-align="start start" layout-wrap class="full-with">
-            <md-card flex="20" ng-repeat="item in self.states|filter:{type:1}" lazy-img-container>
+    <section layout='column' layout-align="center center" class="full-width">
+        <!--<md-toolbar flex="90" flex-offset="5">-->
+            <!--<md-button class="md-icon-button">-->
+                <!--<md-icon>settings</md-icon>-->
+            <!--</md-button>-->
+        <!--</md-toolbar>-->
+        <div flex-gt-lg="100" flex="90"  layout="row" layout-align="center start" layout-wrap class="full-with">
+            <md-card flex-gt-lg="15" flex="20" ng-repeat="item in self.states|filter:{type:1}" lazy-img-container>
                 <img lazy-img="{{item.img}}" ng-src="{{item.img}}" class="md-card-image" alt="{{item.name}}"/>
                 <md-card-title>
                     <md-card-title-text>

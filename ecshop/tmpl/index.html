@@ -9,7 +9,7 @@
         <!--
                 nav left
         -->
-        <nav flex="25" flex-gt-lg="20" flex-offset-gt-lg="5" class="pt-rla">
+        <nav flex="25" flex-gt-lg="20" flex-offset-gt-lg="10" class="pt-rla">
             <md-list class="nav-list">
                 <md-list-item ng-repeat="item in navs" class="nav-list-item pointer" ng-mouseenter="tapEnter($index)" ng-mouseleave="tapLeave($index)">
                     <p class="">{{item.name}}</p>
@@ -27,12 +27,12 @@
         <!--
             carousel-right
         -->
-        <div flex="75" layout="row" layout-align="start start">
-            <uib-carousel interval="Interval" no-wrap="noWrapSlides" class="carousel-responsive" flex="100" style="overflow:hidden">
+        <div flex flex-gt-lg="70" layout="row" layout-align="start start">
+            <uib-carousel interval="Interval" no-wrap="noWrapSlides" class="carousel-responsive" flex flex-gt-lg="85" style="overflow:hidden">
                 <uib-slide ng-repeat="slide in slides" active="slide.active" index="slide.id" class="" layout layout-align="center center">
                     <div flex lazy-img-container>
-                        <img lazy-img="{{slide.image}}" style="margin:auto" width="100%" height="336" class="show-on-1600">
-                        <img lazy-img="{{slide.img}}" style="margin:auto" width="100%" height="336" class="show-on-1200">
+                        <img lazy-img="{{slide.image}}" ng-src="{{slide.image}}" style="margin:auto" width="100%" height="336" class="show-on-1600">
+                        <img lazy-img="{{slide.img}}" ng-src="{{slide.img}}" style="margin:auto" width="100%" height="336" class="show-on-1200">
                     </div>
                     <div class="carousel-caption">
                         <h4>Slide {{slide.id}}</h4>
@@ -48,7 +48,7 @@
         六节电池
     -->
     <section layout-padding layout="row" layout-align="center start" class="full-width">
-        <nav flex="70" flex-gt-lg="65" flex-offset-gt-lg="0" layout="row" layout-wrap layout-align="start center" class="pointer">
+        <nav flex="100" flex-gt-lg="80" flex-offset-gt-lg="" layout="row" layout-wrap layout-align="center center" class="pointer">
             <div ng-repeat="item in subnav1" flex="50" layout="row" layout-align="end start"  class="sub-nav"
                  ng-style="{'backgroundColor':item.color}">
                 <div flex layout="column" layout-align="center center" class="title text-center animated" >
@@ -61,17 +61,17 @@
                 <img lazy-img="{{item.bg}}" style="margin: auto" height="100%">
             </div>
         </nav>
-        <div flex="30" flex-gt-lg="25"  layout-padding layout="column" lauout-align="end center" style="" class="laypt-fix">
-            <div flex ng-repeat="item in subnav2" style="" class="laypt-fix">
-                <img lazy-img="{{item.bg}}" style="margin: auto" height="100%">
-            </div>
-        </div>
+        <!--<div flex="30" flex-gt-lg="25"  layout="column" lauout-align="end center" style="" class="laypt-fix">-->
+            <!--<div flex ng-repeat="item in subnav2" style="" class="laypt-fix">-->
+                <!--<img lazy-img="{{item.bg}}" style="margin: auto" height="100%">-->
+            <!--</div>-->
+        <!--</div>-->
     </section>
     <!--
                 slick + rank
     -->
     <section layout="row" layout-align="start center" class="full-width">
-        <nav flex="70" flex-gt-lg="65" flex-offset-gt-lg="5" layout="column" layout-align="center center">
+        <nav flex="70" flex-gt-lg="55" flex-offset-gt-lg="10" layout="column" layout-align="start center">
             <!--
                 slick1
             -->
@@ -161,7 +161,7 @@
         <!--
             rank
         -->
-        <md-list flex="25" flex-offset="5" layout="column"  layout-align="center start" class="rank">
+        <md-list flex="25" flex-gt-lg="20" flex-offset="5" layout="column"  layout-align="center start" class="rank">
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <h3>热卖排行榜</h3>
