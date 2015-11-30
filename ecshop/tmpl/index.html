@@ -1,0 +1,249 @@
+
+<md-content layout="column" layout-fill layout-align="start center" class="">
+    <!--  header   -->
+
+    <!-- header.end -->
+
+    <!-- subheader -->
+    <section  layout="row" layout-align="center start" class="full-width">
+        <!--
+                nav left
+        -->
+        <nav flex="25" flex-gt-lg="20" flex-offset-gt-lg="5" class="pt-rla">
+            <md-list class="nav-list">
+                <md-list-item ng-repeat="item in navs" class="nav-list-item pointer" ng-mouseenter="tapEnter($index)" ng-mouseleave="tapLeave($index)">
+                    <p class="">{{item.name}}</p>
+                    <md-icon class="md-icons">chevron_right</md-icon>
+                </md-list-item>
+            </md-list>
+        </nav>
+        <div class="pt-ab nav-list-panel" ng-show="$index == tipindex" ng-repeat="item in navs"
+             ng-mouseenter="tapEnter($index)" ng-mouseleave="tapLeave($index)" layout-padding
+             style="">
+            <div flex>
+                {{item.name}}
+            </div>
+        </div>
+        <!--
+            carousel-right
+        -->
+        <div flex="75" layout="row" layout-align="start start">
+            <uib-carousel interval="Interval" no-wrap="noWrapSlides" class="carousel-responsive" flex="100" style="overflow:hidden">
+                <uib-slide ng-repeat="slide in slides" active="slide.active" index="slide.id" class="" layout layout-align="center center">
+                    <div flex lazy-img-container>
+                        <img lazy-img="{{slide.image}}" style="margin:auto" width="100%" height="336" class="show-on-1600">
+                        <img lazy-img="{{slide.img}}" style="margin:auto" width="100%" height="336" class="show-on-1200">
+                    </div>
+                    <div class="carousel-caption">
+                        <h4>Slide {{slide.id}}</h4>
+                        <p>{{slide.text}}</p>
+                    </div>
+                </uib-slide>
+            </uib-carousel>
+        </div>
+    </section>
+    <!-- subheader.end-->
+
+    <!--
+        六节电池
+    -->
+    <section layout-padding layout="row" layout-align="center start" class="full-width">
+        <nav flex="70" flex-gt-lg="65" flex-offset-gt-lg="0" layout="row" layout-wrap layout-align="start center" class="pointer">
+            <div ng-repeat="item in subnav1" flex="50" layout="row" layout-align="end start"  class="sub-nav"
+                 ng-style="{'backgroundColor':item.color}">
+                <div flex layout="column" layout-align="center center" class="title text-center animated" >
+                    <div class="sub-nav-title md-headline text-muted">{{item.title}}</div>
+                    <md-divider></md-divider>
+                    <div class="sub-nav-help md-title text-muted">
+                        {{item.note}}
+                    </div>
+                </div>
+                <img lazy-img="{{item.bg}}" style="margin: auto" height="100%">
+            </div>
+        </nav>
+        <div flex="30" flex-gt-lg="25"  layout-padding layout="column" lauout-align="end center" style="" class="laypt-fix">
+            <div flex ng-repeat="item in subnav2" style="" class="laypt-fix">
+                <img lazy-img="{{item.bg}}" style="margin: auto" height="100%">
+            </div>
+        </div>
+    </section>
+    <!--
+                slick + rank
+    -->
+    <section layout="row" layout-align="start center" class="full-width">
+        <nav flex="70" flex-gt-lg="65" flex-offset-gt-lg="5" layout="column" layout-align="center center">
+            <!--
+                slick1
+            -->
+            <div flex class="pt-rla">
+                <div class="slick-title text-primary md-title">
+                    积分商品
+                    <span class="pull-right md-subheader pointer" ui-sref="toolbar.commodity">
+                        查看更多
+                    </span>
+                </div>
+                <md-button class="pt-ab md-fab md-primary slick-icon" aria-label="more" ui-sref="toolbar.commodity">
+                    <md-icon>more</md-icon>
+                </md-button>
+                <slick infinite=true settings="slickConfig">
+                    <md-card ng-repeat="item in self.states|filter:{'type':'1'}" class="" lazy-img-container>
+                        <img lazy-img="{{item.img}}" class="">
+                        <md-card-content>
+                            <p class="pointer">{{item.name}}</p>
+                            <p class="md-subheader" style="margin-bottom: 1%;">
+                                <span class="text-warn">{{item.Integral}}</span>积分
+                                <!--&nbsp-->
+                                <br/>市场参考价:￥<span>{{item.money}}</span>
+                            </p>
+                            <md-divider></md-divider>
+                            <div layout="row" layout-align="center center" class="full-width">
+                                <div flex="50" class="card-content full-height ">
+                                    <div class="pt-rla card-note md-subheader transition">喜欢:{{item.like}}</div>
+                                    <md-button class="md-icon-button md-primary card-icons transition margin-center" >
+                                        <md-icon class="material-icons">favorite</md-icon>
+                                    </md-button>
+                                </div>
+                                <div flex="50" class="card-content  full-height">
+                                    <div class="pt-rla card-note md-subheader transition">收藏:{{item.collect}}</div>
+                                    <md-button class="md-icon-button md-accent card-icons transition margin-center">
+                                        <md-icon class="material-icons">grade</md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </slick>
+            </div>
+            <!--
+                slick2
+            -->
+            <div flex class="pt-rla">
+                <div class="slick-title text-primary md-title">
+                    生日特供
+                    <span class="pull-right md-subheader pointer" ui-sref="toolbar.commodity" ui-sref="toolbar.commodity">
+                        查看更多
+                    </span>
+                </div>
+                <md-button class="pt-ab md-fab md-primary slick-icon" aria-label="more">
+                    <md-icon>more</md-icon>
+                </md-button>
+                <slick settings="slickConfig">
+                    <md-card ng-repeat="item in self.states|filter:{'type':'0'}" lazy-img-container>
+                        <img lazy-img="{{item.img}}">
+                        <md-card-content>
+                            <p class="pointer">{{item.name}}</p>
+                            <p class="md-subheader" style="margin-bottom: 1%;">
+                                <span class="text-warn">{{item.Integral}}</span>积分
+                                <!--&nbsp-->
+                                <br/>市场参考价:￥<span>295</span>
+                            </p>
+                            <md-divider></md-divider>
+                            <div layout="row" layout-align="center center" class="full-width">
+                                <div flex="50" class="card-content full-height ">
+                                    <div class="pt-rla card-note md-subheader transition">喜欢:{{item.like}}</div>
+                                    <md-button class="md-icon-button md-primary card-icons transition margin-center" >
+                                        <md-icon class="material-icons">favorite</md-icon>
+                                    </md-button>
+                                </div>
+                                <div flex="50" class="card-content  full-height">
+                                    <div class="pt-rla card-note md-subheader transition">收藏:{{item.collect}}</div>
+                                    <md-button class="md-icon-button md-accent card-icons transition margin-center">
+                                        <md-icon class="material-icons">grade</md-icon>
+                                    </md-button>
+                                </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </slick>
+            </div>
+        </nav>
+
+        <!--
+            rank
+        -->
+        <md-list flex="25" flex-offset="5" layout="column"  layout-align="center start" class="rank">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <h3>热卖排行榜</h3>
+                </div>
+            </md-toolbar>
+            <md-list-item ng-repeat="item in self.states|orderBy:'-purchased'|limitTo:10" flex ng-mouseenter="flag=$index"
+                          ng-mouseout="flag=-1"
+                          class="pointer full-width" layout="row" layout-algin="center center">
+                <img id="see" ng-src="{{item.img}}" class="md-avatar"  style="margin: auto" height="100%">
+                <div flex="25">
+                    <p class="text-center md-body-1">{{item.name}}</p>
+                </div>
+                <div flex class="text-center">
+                    <div class="note md-caption" layout="row" layout-align="center center">
+                        <div flex="50" layout="column" layout-align="center center">
+                            <div>
+                                <md-icon>favorite</md-icon>:
+                                {{item.like}}
+                            </div>
+                            <div>
+                                <md-icon>grade</md-icon>:
+                                {{item.collect}}
+                            </div>
+                        </div>
+                        <div flex="50" layout="column " layout-align="space-between center" class="labels-right">
+                            <div class="half-height" flex>
+                                <span class="text-warn">{{item.Integral}}</span>积分
+                            </div>
+                            <div class="half-height" flex>
+                                已售{{item.purchased}}件
+                            </div>
+                        </div>
+                    </div>
+                    <div class="action md-warn text-center" flex ng-click="addCart(item)">
+                        加入<br/>
+                        购物车
+                    </div>
+                </div>
+            </md-list-item>
+        </md-list>
+    </section>
+    <footer layout="column" layout-align="start center" class="full-width">
+        <!--
+            footer快捷导航
+        -->
+        <section layout="row" layout-align="center start">
+            <div flex class="widget">
+                <h3 class="text-primary title">关于亿富贷</h3>
+                <p class="text-muted">公司介绍</p>
+                <p class="text-muted">团队介绍</p>
+                <p class="text-muted">联系我们</p>
+                <p class="text-muted">加入我们</p>
+            </div>
+            <div flex class="widget">
+                <h3 class="text-primary title">保障/协议</h3>
+                <p class="text-muted">保障协议</p>
+                <p class="text-muted">法律保障</p>
+                <p class="text-muted">服务协议</p>
+                <p class="text-muted">隐私声明</p>
+            </div>
+            <div flex class="widget">
+                <h3 class="text-primary title">帮助中心</h3>
+                <p class="text-muted">常见问题</p>
+                <p class="text-muted">安全保障</p>
+                <p class="text-muted">投资理财</p>
+                <p class="text-muted">债券转让</p>
+            </div>
+            <div flex class="text-left widget">
+                <h3 class="text-primary title">我们一直在进步</h3>
+                <p class="text-muted">联系电话:400-027-7688</p>
+                <p class="text-muted">客服邮箱:easyfunding@yifudai.com</p>
+                <p class="text-muted">公司地址:湖北省武汉市武昌区和平大道750号</p>
+                <p class="text-muted">绿地金融国际城B3栋17层</p>
+            </div>
+        </section>
+        <section layout="row" layout-align="start center">
+            <p>友情链接:</p>
+            <md-button class="md-primary" ng-repeat="item in links" ng-href="{{item.url}}" target="_blank">{{item.name}}</md-button>
+        </section>
+        <div class="text-muted">
+            鄂ICP备15003869号-1 2014亿富贷<br/>
+            武汉亿富商务顾问有限公司 版权所有
+        </div>
+    </footer>
+</md-content>

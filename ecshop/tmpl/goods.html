@@ -1,0 +1,29 @@
+<md-content>
+    <section layout='column' layout-align="start center" class="full-width">
+        <div flex="90">
+            options
+        </div>
+        <div flex-gt-lg="80" flex flex-offset-gt-lg="10" layout="row" layout-align="start start" layout-wrap class="full-with">
+            <md-card flex="20" ng-repeat="item in self.states|filter:{type:1}" lazy-img-container>
+                <img lazy-img="{{item.img}}" ng-src="{{item.img}}" class="md-card-image" alt="{{item.name}}"/>
+                <md-card-title>
+                    <md-card-title-text>
+                        <span class="md-headline">{{item.name}}</span>
+                    </md-card-title-text>
+                </md-card-title>
+                <md-card-content>
+                    <p>积分:{{item.Integral}}<br/>
+                        市场参考价:${{item.money}}</p>
+                </md-card-content>
+                <md-card-actions layout="row" layout-align="end start">
+                    <md-button class="md-icon-button" aria-label="喜欢">
+                        <md-icon>favorite</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" aria-label="收藏">
+                        <md-icon>grade</md-icon>
+                    </md-button>
+                </md-card-actions>
+            </md-card>
+        </div>
+    </section>
+</md-content>

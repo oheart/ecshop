@@ -167,3 +167,12 @@ md-list-item:hover{
 .widget .title{
     position: relative;
 }
+/* ********************* carousel ****************************** */
+.carousel-control.left,.carousel-control.right{
+    background-image: none;
+    -moz-background-image: none;
+    -webkit-background-image:none ;
+    -o-background-image: none;
+}
+
+
