@@ -1,31 +1,52 @@
 <md-content>
-    <section layout='column' layout-align="center center" class="full-width">
-        <!--<md-toolbar flex="90" flex-offset="5">-->
-            <!--<md-button class="md-icon-button">-->
-                <!--<md-icon>settings</md-icon>-->
-            <!--</md-button>-->
+    <section layout='row' layout-align="center center" layout-wrap class="full-width">
+        <!--<md-toolbar flex="90" flex-offset="" class="mg-top">-->
+            <!--<div class="md-toolbar-tools">-->
+                <!--<md-button class="md-icon-button bar-setting transition">-->
+                    <!--<md-icon>settings</md-icon>-->
+                <!--</md-button>-->
+                <!--<nav>-->
+
+                <!--</nav>-->
+            <!--</div>-->
         <!--</md-toolbar>-->
-        <div flex-gt-lg="100" flex="90"  layout="row" layout-align="center start" layout-wrap class="full-with">
-            <md-card flex-gt-lg="15" flex="20" ng-repeat="item in self.states|filter:{type:1}" lazy-img-container>
+        <md-content flex-gt-lg="80" flex="90"  layout="row" layout-align="start start" layout-wrap class="full-with">
+
+            <md-card flex-gt-lg="15" flex="15" ng-repeat="item in self.states" lazy-img-container>
+                <!--<md-card-header ng-if="item.type == 0">-->
+                    <!--<md-card-avatar ng-switch="item.type">-->
+                        <!--<md-icon>cake</md-icon>-->
+                    <!--</md-card-avatar>-->
+                <!--</md-card-header>-->
                 <img lazy-img="{{item.img}}" ng-src="{{item.img}}" class="md-card-image" alt="{{item.name}}"/>
                 <md-card-title>
                     <md-card-title-text>
-                        <span class="md-headline">{{item.name}}</span>
+                        <span class="md-headline">{{item.name}}
+                            <md-icon alt="生日特供" ng-if="item.type==0" class="pull-right pointer" style="margin: 0">
+                                <md-tooltip ng-if="item.type==0">生日特供</md-tooltip>
+                                cake
+                            </md-icon>
+                        </span>
                     </md-card-title-text>
                 </md-card-title>
                 <md-card-content>
-                    <p>积分:{{item.Integral}}<br/>
-                        市场参考价:${{item.money}}</p>
+                    <p>积分:<span class="text-warn sub-lg">{{item.Integral}}</span>     <br/>
+                    <span class="sub-str">市场参考价:${{item.money}}</span></p>
                 </md-card-content>
                 <md-card-actions layout="row" layout-align="end start">
+                    <md-button class="md-warn md-hue-2 md-raised md-cornered" flex>
+                        加入购物车
+                    </md-button>
                     <md-button class="md-icon-button" aria-label="喜欢">
+                        <md-tooltip md-direction="top">受到{{item.like}}人的喜欢</md-tooltip>
                         <md-icon>favorite</md-icon>
                     </md-button>
                     <md-button class="md-icon-button" aria-label="收藏">
+                        <md-tooltip md-direction="top">被{{item.collect}}人收藏</md-tooltip>
                         <md-icon>grade</md-icon>
                     </md-button>
                 </md-card-actions>
             </md-card>
-        </div>
+        </md-content>
     </section>
 </md-content>

@@ -2,5 +2,9 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/angular-lazyload" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/angular-slick-carousel" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ecshop" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ui-router" vcs="Git" />
   </component>
 </project>

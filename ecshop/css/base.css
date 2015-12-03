@@ -189,13 +189,15 @@ nav .sub-nav:hover .sub-nav-help {
     transform: translate(0, 0px);
 }
 
-md-divider {
+md-divider.nav-divider {
     width: 0;
+    margin: 2% 0;
 }
 
-nav .sub-nav:hover md-divider {
+nav .sub-nav:hover md-divider.nav-divider {
     width: 80%;
-    border-color: #2196f3;
+    margin: 5% 0;
+    border-color: #fff;
 }
 
 /*
@@ -212,7 +214,7 @@ span.pull-right.md-subheader{
     line-height: 2em;
 }
 .slick-icon{
-    top:-8px;
+    top:0px;
     right: -65px;
 }
 md-card md-card-content{
@@ -260,6 +262,7 @@ md-list.rank {
 
 md-list.rank md-list-item {
     /*padding: 0;*/
+    padding-right: 0;
     min-height: 65px;
     border-bottom: 1px dashed #2196f3;
 }
@@ -277,7 +280,7 @@ md-list.rank md-list-item:hover .action {
 }
 
 .action {
-    background-color: #FF3D49;
+    /*background-color: #FF3D49;*/
 }
 
 .labels-right {
@@ -340,3 +343,51 @@ footer > section {
     width:160px;
 }
 
+.bar-setting:hover{
+    -webkit-transform: rotate(120deg) scale(1.4);
+    -moz-transform: rotate(120deg) scale(1.4);
+    -ms-transform: rotate(120deg) scale(1.4);
+    -o-transform: rotate(120deg) scale(1.4);
+    transform: rotate(120deg) scale(1.4);
+}
+/*
+    购物车
+*/
+.popover-title{
+    color:#2196f3;
+}
+.popover{
+    max-width: 900px;
+}
+form.form-group-lg>md-input-container{
+    min-width: 350px;
+}
+
+.submting{
+    transform: translate(-201px,0px);
+    opacity: 0;
+}
+.sub-button.full-width:hover .submting{
+    transform: translate(10px,0px);
+    opacity: 1;
+}
+.goods-card{
+    border:1px dashed #2196f3;
+}
+
+/*
+
+*/
+.groupX{
+
+}
+button.left{
+    border-radius: 10px 0 0 10px;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+}
+button.right{
+    border-radius: 0px 10px 10px 0px;
+    margin-left: 0 !important;
+    padding-left: 0 !important;
+}

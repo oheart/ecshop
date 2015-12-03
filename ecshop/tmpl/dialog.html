@@ -1,0 +1,72 @@
+<md-dialog aria-label="商品详情" ng-cloak>
+    <md-toolbar>
+        <div class="md-toolbar-tools" layout="row" layout-no-wrap layout-align="space-between center">
+            <div> {{items.name}}</div>
+            <div>
+                <md-button ng-click="hide()" class="md-icon-button">
+                    <md-icon aria-label="close dialog">close</md-icon>
+                </md-button>
+            </div>
+        </div>
+    </md-toolbar>
+    <md-content layout="column" layout-align="center center">
+        <div layout="row" layout-align="start center" class="full-width">
+            <md-list flex layout="column">
+                <md-list-item>
+                    <md-button class="md-icon-button" aria-label="like">
+                        <md-icon>favorite</md-icon>
+                    </md-button>
+                    有{{items.like}}人喜欢
+                </md-list-item>
+                <md-list-item>
+                    <md-button class="md-icon-button" aira-label="star">
+                        <md-icon>grade</md-icon>
+                    </md-button>
+                    有{{items.collect}}人收藏
+                </md-list-item>
+                <md-list-item>
+                    <md-button class="md-icon-button">
+                        <md-icon>attach_money</md-icon>
+                    </md-button>
+                    积分:{{items.Integral}}
+                </md-list-item>
+                <md-list-item>
+                    <md-button class="md-icon-button">
+                        <md-icon>￥</md-icon>
+                    </md-button>
+                    市场参考价:{{items.money}}
+                </md-list-item>
+                <md-list-item>
+                    <md-button class="md-icon-button">
+                        <md-icon>local_mall</md-icon>
+                    </md-button>
+                    已兑换{{items.purchased}}
+                </md-list-item>
+            </md-list>
+            <div>
+                <img lazy-img="{{items.img}}" ng-src="{{items.img}}" alt="{{items.name}}">
+            </div>
+            <div flex>
+
+            </div>
+        </div>
+
+        <div flex class="" style="width: 80%">
+            <!--rn-carousel-index="carouselIndex"-->
+            <ul rn-carousel rn-carousel-controls rn-carousel-pause-on-hover
+                rn-carousel-auto-slide="5" rn-carousel-transition="hexagon"
+                rn-carousel-buffered class="carousel">
+                <li ng-repeat="item in items.banner" ng-class="'id-'+$index">
+                    <div class="bgimage" ng-style="{'backgroundImage':'url('+item+')'}">
+                        <!--<img lazy-img="{{item}}" ng-src="{{item}}"/>-->
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </md-content>
+    <md-dialog-actions layout="row" layout-align="end center">
+        <md-button md-autofocus class="md-warn md-raised" ng-click="dialogAddGoods(items)">
+            加入购物车
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

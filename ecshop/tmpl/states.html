@@ -1,8 +1,101 @@
-<div>
-    <div>
-        $states--->订单页面
-    </div>
-    <div>
-        商品订单
-    </div>
-</div>
+<md-content>
+    <section class="full-width mg-top" layout="row" layout-align="center center">
+        <md-list flex="80" layout="row" layout-wrap layout-align="center center">
+            <md-toolbar>
+                <dvi class="md-toolbar-tools">购物车</dvi>
+            </md-toolbar>
+            <md-content>
+            <!--<md-subheader flex="100">购物车</md-subheader>-->
+            <md-list-item ng-repeat="item in userConfig.goods" flex="100" class="md-3-line" layout="row" layout-align="center center">
+                <md-checkbox ng-model="item.selected" class="md-warn" aria-label="{{item.name}}" ng-click="goodsSelect(item)"></md-checkbox>
+                <div class="md-list-item-text" layout="row">
+                    <div flex>
+                        <img ng-src="{{item.img}}"  lazy-img="{{item.img}}" alt="{{item.name}}" class="md-avatar" height="100%" style="border-radius: 0;"/>
+                        <span>{{item.name}}</span>
+                        <p><span class="text-warn">{{item.Integral}}</span>积分</p>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <div flex>
+                            <md-button class="md-icon-button" aria-label="{{item.name}}">
+                                <md-icon>
+                                    favorite
+                                </md-icon>
+                            </md-button>
+                            {{item.like}}人喜欢
+                        </div>
+                        <div flex>
+                            <md-button class="md-icon-button">
+                                <md-icon>
+                                    grade
+                                </md-icon>
+                            </md-button>
+                            {{item.collect}}人收藏
+                        </div>
+                    </div>
+                    <div flex layout="row" layout-align="center center">
+                        <md-button class="md-icon-button" ng-click="deleteGoodsCont(item)">
+                            <md-icon>remove</md-icon>
+                        </md-button>
+                        数量:{{item.cont}}件
+                        <md-button class="md-icon-button" ng-click="addGoodsCont(item)">
+                            <md-icon>add</md-icon>
+                        </md-button>
+                    </div>
+                </div>
+                <!--<div class="md-list-item-inner" flex layout="row" layout-align="center center">-->
+
+                <!--</div>-->
+                <md-button class="md-secondary  md-icon-button md-hue-3 pointer" ng-class="{'md-warn':$index==iconIndex}"
+                           ng-mouseenter="iconHover($index)" ng-mouseleave="iconLeave($index)" ng-click="removeGoods(item)">
+                    <md-icon>delete</md-icon>
+                </md-button>
+            </md-list-item>
+            </md-content>
+            <md-toolbar class="md-left" ng-mouseenter="ghover = true" ng-mouseleave="ghover = false">
+                <div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+                    <div>结算</div>
+                    <div flex>
+                        一共 <span class="pointer" ng-class="{'text-warn':ghover==true}">{{userConfig.goodsLength}}</span> 件,
+                        一共 <span class="pointer" ng-class="{'text-warn':ghover==true}">{{userConfig.integral}}</span> 积分
+                    </div>
+                    <div class="tools" popover-placement="bottom" uib-popover-html="tmpl/popoerGoods.html" popover-title="填写收货地址">
+                        提交订单
+                        <md-button class="md-button md-icon-button text-primary"  popover-placement="left" uib-popover-template="'tmpl/popoerGoods.html'" popover-title="填写收货地址">
+                            <md-icon>assignment</md-icon>
+                        </md-button>
+                        <!--<md-button class="md-button md-icon-button">-->
+                            <!--<md-icon>shopping</md-icon>-->
+                        <!--</md-button>-->
+                    </div>
+                </div>
+            </md-toolbar>
+        </md-list>
+    </section>
+    <md-divider class="divider mg-top" style="margin:2% auto 0"></md-divider>
+    <section class="full-width text-center" layout-align="center center" layout="row" layout-wrap>
+        <h4 class="title full-width">我的订单</h4>
+        <div layout="row" layout-align="center center" layout-wrap class="full-width">
+            <!--<div flex="100" class="">-->
+                <!--<span class="text-center" flex>订单查询功能暂未开放</span>-->
+            <!--</div>-->
+            <div flex="80" class="" layout-align="start center" layout="row">
+                <div ng-show="user|objIsEmpty:true" flex="100" class="text-primary">
+                    您还没有提交过订单
+                </div>
+                <div flex="33" class="goods-card" ng-show="user|objIsEmpty:false">
+                    <md-toolbar>
+                        <div class="md-toolbar-tools" layout="row" layout-align="center center">
+                            <!--<md-button class="md-icon-button">-->
+                                <!--<md-icon class="material-icons md-36">assignment_ind</md-icon>-->
+                            <!--</md-button>-->
+                        </div>
+                    </md-toolbar>
+                    {{user.name}}<br/>
+                    {{user.phone}}<br/>
+                    {{user.address}}<br/>
+                    {{user.message}}
+                </div>
+            </div>
+        </div>
+    </section>
+</md-content>

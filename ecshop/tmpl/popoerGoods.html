@@ -1,0 +1,54 @@
+<form class="text-primary form-group-lg" novalidate ng-submit="submitGoods(user)" name="formGoods">
+    <md-input-container class="md-icon-float md-block">
+        <label>收货人姓名</label>
+        <md-icon class="text-default">account_box</md-icon>
+        <input ng-model="user.name" name="username" required ng-minlength="2" ng-maxlength="7" ng-model-options="{ updateOn:'blur'}">
+    </md-input-container>
+    <div ng-messages="formGoods.username.$error" class="text-warn" ng-show="formGoods.$submitted">
+        <div ng-message="required">必填</div>
+        <div ng-message="minlength">请输入2个字以上的名字或昵称</div>
+        <div ng-message="maxlength">请输入7个字以内的名字或昵称</div>
+    </div>
+
+    <md-input-container class="md-block md-icon-float">
+        <label>手机号码</label>
+        <md-icon class="text-default">
+            phone
+        </md-icon>
+        <input ng-model="user.phone" type="number" name="phone" required ng-minlength="11" ng-maxlength="14" ng-model-options="{ updateOn:'blur'}"/>
+    </md-input-container>
+    <div ng-messages="formGoods.phone.$error" class="text-warn" ng-show="formGoods.$submitted">
+        <div ng-message="required">必填</div>
+        <div ng-message="number">请输入正确的手机号</div>
+        <div ng-message="minlength">如果您的手机号小于11位,请联系"亿富贷"微信公众号</div>
+        <div ng-message="maxlength">这个世界上应该还没有超过14位的手机号吧?</div>
+    </div>
+
+    <md-input-container class="md-icon-float md-block">
+        <label class="text-default">收货地址</label>
+        <md-icon class="text-default">
+            assignment
+        </md-icon>
+        <input ng-model="user.address" type="text" name="address" required ng-minlength="6" ng-maxlength="22" ng-model-options="{ updateOn:'blur'}"/>
+    </md-input-container>
+    <div ng-messages="formGoods.address.$error" class="text-warn" ng-show="formGoods.$submitted">
+        <div ng-message="required">必填</div>
+        <div ng-message="minlength">我敢肯定这个地址不在地球上</div>
+        <div ng-message="maxlength">请尽量简洁的填写您的收货地址,或者联系"亿富贷"微信公众平台处理</div>
+    </div>
+
+    <md-input-container class="md-icon-float md-block">
+        <label class="text-default">留言</label>
+        <md-icon class="text-default">
+            message
+        </md-icon>
+        <textarea ng-model="user.message" columns="1" ng-maxlength="50" md-maxlength="50" rows="3" name="messages" ng-model-options="{ updateOn:'blur'}">
+        </textarea>
+    </md-input-container>
+    <div ng-messages="formGoods.messages.$error" class="text-warn" ng-show="formGoods.$submitted">
+        <div ng-message="maxlength">您要告诉我们的东西太多了,不如通过"亿富贷"微信公众号来告诉我们吧!</div>
+    </div>
+    <md-button class="md-raised md-primary full-width sub-button" ng-disabled="formGoods.$invalid||formGoods.$pristine" type layout="row" layout-align="center center" style="margin:0">
+        <span flex>发送<md-icon class="submting transition">send</md-icon></span>
+    </md-button>
+</form>
