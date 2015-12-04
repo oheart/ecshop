@@ -8,14 +8,14 @@
             <!--<md-subheader flex="100">购物车</md-subheader>-->
             <md-list-item ng-repeat="item in userConfig.goods" flex="100" class="md-3-line" layout="row" layout-align="center center">
                 <md-checkbox ng-model="item.selected" class="md-warn" aria-label="{{item.name}}" ng-click="goodsSelect(item)"></md-checkbox>
-                <div class="md-list-item-text" layout="row">
+                <div class="md-list-item-text" layout="row" layout-align="center center">
                     <div flex>
                         <img ng-src="{{item.img}}"  lazy-img="{{item.img}}" alt="{{item.name}}" class="md-avatar" height="100%" style="border-radius: 0;"/>
                         <span>{{item.name}}</span>
                         <p><span class="text-warn">{{item.Integral}}</span>积分</p>
                     </div>
                     <div flex layout="row" layout-align="center center">
-                        <div flex>
+                        <div>
                             <md-button class="md-icon-button" aria-label="{{item.name}}">
                                 <md-icon>
                                     favorite
@@ -23,7 +23,7 @@
                             </md-button>
                             {{item.like}}人喜欢
                         </div>
-                        <div flex>
+                        <div>
                             <md-button class="md-icon-button">
                                 <md-icon>
                                     grade
@@ -41,14 +41,15 @@
                             <md-icon>add</md-icon>
                         </md-button>
                     </div>
+                    <md-button  class="md-icon-button md-hue-3 pointer" ng-class="{'md-warn':$index==iconIndex}" aria-label="delete"
+                                ng-mouseenter="iconHover($index)" ng-mouseleave="iconLeave($index)" ng-click="removeGoods(item)">
+                        <md-icon>delete</md-icon>
+                    </md-button>
                 </div>
                 <!--<div class="md-list-item-inner" flex layout="row" layout-align="center center">-->
 
                 <!--</div>-->
-                <md-button class="md-secondary  md-icon-button md-hue-3 pointer" ng-class="{'md-warn':$index==iconIndex}"
-                           ng-mouseenter="iconHover($index)" ng-mouseleave="iconLeave($index)" ng-click="removeGoods(item)">
-                    <md-icon>delete</md-icon>
-                </md-button>
+
             </md-list-item>
             </md-content>
             <md-toolbar class="md-left" ng-mouseenter="ghover = true" ng-mouseleave="ghover = false">

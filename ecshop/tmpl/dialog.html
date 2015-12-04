@@ -3,7 +3,7 @@
         <div class="md-toolbar-tools" layout="row" layout-no-wrap layout-align="space-between center">
             <div> {{items.name}}</div>
             <div>
-                <md-button ng-click="hide()" class="md-icon-button">
+                <md-button ng-click="cancel()" class="md-icon-button">
                     <md-icon aria-label="close dialog">close</md-icon>
                 </md-button>
             </div>
@@ -50,12 +50,12 @@
 
             </div>
         </div>
-
-        <div flex class="" style="width: 80%">
+        <md-divider class="md-divider-accent mg-top full-width"></md-divider>
+        <div flex class="full-width md-dialog-content" style="overflow: hidden" layout layout-align="center center">
             <!--rn-carousel-index="carouselIndex"-->
             <ul rn-carousel rn-carousel-controls rn-carousel-pause-on-hover
                 rn-carousel-auto-slide="5" rn-carousel-transition="hexagon"
-                rn-carousel-buffered class="carousel">
+                rn-carousel-buffered class="carousel" style="width: 80%;">
                 <li ng-repeat="item in items.banner" ng-class="'id-'+$index">
                     <div class="bgimage" ng-style="{'backgroundImage':'url('+item+')'}">
                         <!--<img lazy-img="{{item}}" ng-src="{{item}}"/>-->
@@ -65,7 +65,7 @@
         </div>
     </md-content>
     <md-dialog-actions layout="row" layout-align="end center">
-        <md-button md-autofocus class="md-warn md-raised" ng-click="dialogAddGoods(items)">
+        <md-button md-autofocus class="md-warn md-raised" ng-click="answer(items)">
             加入购物车
         </md-button>
     </md-dialog-actions>

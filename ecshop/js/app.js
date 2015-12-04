@@ -64,16 +64,16 @@ angular.module("app", relyOn)
 
             //url
             $urlRouterProvider
-            //.when("/")
+                .when("/", "/shopping/index")
                 .otherwise("/shopping/index");
 
 
             //图片延迟加载
-            //lazyImgConfigProvider.setOptions({
-            //    offset:500
-            //    //onSuccess:function(image){ alert("success");console.log(image);},
-            //    //onError:function(image){alert("error");console.log(image);}
-            //});
+            lazyImgConfigProvider.setOptions({
+                offset: 500
+                //onSuccess:function(image){ alert("success");console.log(image);},
+                //onError:function(image){alert("error");console.log(image);}
+            });
 
             $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
             $httpProvider.defaults.cache = true;
@@ -110,26 +110,32 @@ angular.module("app", relyOn)
     .value("values", {
         flag: true
     })
-    .filter("objIsEmpty",function(){
-        return function(user,flag){
-            if(flag){
+    .filter("objIsEmpty", function () {
+        return function (user, flag) {
+            if (flag) {
                 return _.isEmpty(user);
-            }else if(!flag){
+            } else if (!flag) {
                 return !_.isEmpty(user);
             }
         }
     })
-    .controller("myCtrl", ["$scope", "$window", "$q", "$timeout", "$mdConstant", "$mdDialog", "$state", "tool", "$cookies", "$cookieStore","$http","$rootScope",
-        function ($scope, $window, $q, $timeout, $mdConstant, $mdDialog, $state, tool, $cookies, $cookieStore,$http,$rootScope) {
+    .controller("myCtrl", ["$scope", "$window", "$q", "$timeout", "$mdConstant", "$mdDialog", "$state", "tool", "$cookies", "$cookieStore", "$http", "$rootScope", "$mdMedia",
+        function ($scope, $window, $q, $timeout, $mdConstant, $mdDialog, $state, tool, $cookies, $cookieStore, $http, $rootScope, $mdMedia) {
 
             $scope.userConfig = {};
             $scope.user = {};
-            $scope.sweet={};
+            $scope.sweet = {};
             $scope.ghover = false;
             $scope.submited = false;
+            $scope.customFullscreen = $mdMedia('sm')||$mdMedia('md');
+            $scope.$watch(function(){
+                return $mdMedia('sm')||$mdMedia('md');
+            },function(boolean){
+                $scope.customFullscreen = (boolean === true);
+            });
 
             $scope.getLength = function () {  //获取商品数量
-                if (angular.isObject($scope.userConfig.goods)){
+                if (angular.isObject($scope.userConfig.goods)) {
                     var goodsLength = 0;
                     angular.forEach($scope.userConfig.goods, function (item) {
                         goodsLength += item.cont;
@@ -142,26 +148,26 @@ angular.module("app", relyOn)
                 }
             };
 
-            $scope.sweet.options={
-                    title:"你确定要添加购物车?",
-                    text:"点击确定你将会添加这款商品,否则请点取消,或者查看商品详情",
-                    type:"warning",
-                    showCancelButton:true,
-                    confirmButtonColor:"#2196f3",
-                    confirmButtonText:"确定",
-                    cancelButtonText:"不了,我再看看",
-                    closeOnConfirm:false,
-                    closeOnCancel:false
+            $scope.sweet.options = {
+                title: "你确定要添加购物车?",
+                text: "点击确定你将会添加这款商品,否则请点取消,或者查看商品详情",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#2196f3",
+                confirmButtonText: "确定",
+                cancelButtonText: "不了,我再看看",
+                closeOnConfirm: false,
+                closeOnCancel: false
             };
             $scope.sweet.confirm = {
-                title:"添加成功",
-                text:"您已经添加成功,您可以在购物车调整商品数量",
-                type:"success"
+                title: "添加成功",
+                text: "您已经添加成功,您可以在购物车调整商品数量",
+                type: "success"
             };
             $scope.sweet.cancle = {
-                title:"取消成功",
-                text:"继续逛逛吧,更多惊喜等着您",
-                type:"error"
+                title: "取消成功",
+                text: "继续逛逛吧,更多惊喜等着您",
+                type: "error"
             };
 
             //更新购物车
@@ -170,21 +176,21 @@ angular.module("app", relyOn)
             //
             //};
 
-            $scope.getIntegral = function(){
-                if (angular.isObject($scope.userConfig.goods)){
+            $scope.getIntegral = function () {
+                if (angular.isObject($scope.userConfig.goods)) {
                     var intergral = 0;
-                    angular.forEach($scope.userConfig.goods,function(item){
-                        intergral += item.Integral*item.cont;
+                    angular.forEach($scope.userConfig.goods, function (item) {
+                        intergral += item.Integral * item.cont;
                     });
                     $scope.userConfig.integral = intergral;
-                }else{
+                } else {
                     return 0;
                 }
             };
-            $scope.toolHover = function(){
+            $scope.toolHover = function () {
 
             };
-            $scope.toolLeave = function(){
+            $scope.toolLeave = function () {
 
             };
 
@@ -197,11 +203,11 @@ angular.module("app", relyOn)
             };
 
             $scope.getUserConfig = function () {
-                $scope.userConfig.config = $cookies.getObject("config")|{};
+                $scope.userConfig.config = $cookies.getObject("config") | {};
             };
 
-            $scope.goodsCardEmpty = function(){
-                $scope.goodsCard  = _.isEmpty($scope.user);
+            $scope.goodsCardEmpty = function () {
+                $scope.goodsCard = _.isEmpty($scope.user);
             };
 
             $window.onload = function () {
@@ -215,17 +221,21 @@ angular.module("app", relyOn)
             };
 
             $scope.showSwal = {};
-            $scope.showSwal.success = function(){
-              swal("恭喜您!","您已经成功","success");
+            $scope.showSwal.success = function () {
+                swal("添加成功", "现在您可以到购物车提交您要兑换的商品了!", "success");
             };
-            $scope.showSwal.error = function(){
-              swal("不好意思","添加失败","error");
+            $scope.showSwal.error = function () {
+                swal("不好意思", "添加失败", "error");
             };
+            $scope.showSwal.watting = function(){
+                swal("再逛逛其他商品吧!");
+            };
+
             // 加入购物车
             $scope.addGoods = function (item) {
                 //tool.filterObj($scope.userConfig.goods);//先过滤不是数组中不是OBJ的item
 
-                if (angular.isObject(item,$scope.userConfig.goods)) {//判断有效 商品
+                if (angular.isObject(item, $scope.userConfig.goods)) {//判断有效 商品
 
                     if (angular.isUndefined($scope.userConfig.goods[item.name])) { //购物车有没有这个商品
                         $scope.userConfig.goods[item.name] = item;
@@ -252,50 +262,50 @@ angular.module("app", relyOn)
 
                 //console.log($scope.userConfig.goods);
             };
-            $scope.dialogAddGoods = function(item){
+            $scope.dialogAddGoods = function (item) {
                 $scope.addGoods(item);
                 $scope.hide();
             };
 
             //删除
-            $scope.removeGoods = function(item){
-                if(tool.equealTo($scope.userConfig.goods[item.name],item)){
-                    $scope.userConfig.goods= _.omit($scope.userConfig.goods,item.name);
+            $scope.removeGoods = function (item) {
+                if (tool.equealTo($scope.userConfig.goods[item.name], item)) {
+                    $scope.userConfig.goods = _.omit($scope.userConfig.goods, item.name);
                     $cookies.putObject("goods", $scope.userConfig.goods);
                     $scope.getLength();
                     $scope.getIntegral();
-                }else{
+                } else {
                     $window.alert("商品失效了!");
                 }
             };
             //增加
-            $scope.addGoodsCont = function(item){
-                if(tool.equealTo($scope.userConfig.goods[item.name],item)){
+            $scope.addGoodsCont = function (item) {
+                if (tool.equealTo($scope.userConfig.goods[item.name], item)) {
                     $scope.userConfig.goods[item.name].cont++;
                     $cookies.putObject("goods", $scope.userConfig.goods);
                     $scope.getLength();
                     $scope.getIntegral();
-                }else{
+                } else {
                     $window.alert("商品失效了!");
                 }
             };
             //减少
-            $scope.deleteGoodsCont = function(item){
-                if(tool.equealTo($scope.userConfig.goods[item.name],item)){
-                    if($scope.userConfig.goods[item.name].cont>1){
+            $scope.deleteGoodsCont = function (item) {
+                if (tool.equealTo($scope.userConfig.goods[item.name], item)) {
+                    if ($scope.userConfig.goods[item.name].cont > 1) {
                         $scope.userConfig.goods[item.name].cont--;
                         $cookies.putObject("goods", $scope.userConfig.goods);
                         $scope.getLength();
                         $scope.getIntegral();
-                    }else if($scope.userConfig.goods[item.name].cont=1){
-                        $scope.userConfig.goods= _.omit($scope.userConfig.goods,item.name);
+                    } else if ($scope.userConfig.goods[item.name].cont = 1) {
+                        $scope.userConfig.goods = _.omit($scope.userConfig.goods, item.name);
                         $cookies.putObject("goods", $scope.userConfig.goods);
                         $scope.getLength();
                         $scope.getIntegral();
-                    }else{
+                    } else {
                         $window.alert("商品失效了!");
                     }
-                }else{
+                } else {
                     $window.alert("商品失效了!");
                 }
             };
@@ -305,23 +315,23 @@ angular.module("app", relyOn)
                 $scope.userConfig.goods = {};
             };
 
-            $scope.iconHover=function($index){
+            $scope.iconHover = function ($index) {
                 $scope.iconIndex = $index;
             };
-            $scope.iconLeave = function($index){
+            $scope.iconLeave = function ($index) {
                 $scope.iconIndex = -1;
             };
 
-            $scope.goodsSelect = function(item){
+            $scope.goodsSelect = function (item) {
                 //console.log($scope.userConfig.goods[item.name]);
                 //console.log(item);
                 $scope.getLength();
-                $cookies.putObject("goods",$scope.userConfig.goods);
+                $cookies.putObject("goods", $scope.userConfig.goods);
                 //console.log($cookies.getObject("goods"));
             };
 
             //提交订单
-            $scope.submitGoods = function(user){
+            $scope.submitGoods = function (user) {
                 console.log(user);
             };
 
@@ -388,7 +398,7 @@ angular.module("app", relyOn)
                         type: 1,
                         name: "这是一个锅铲",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 122,//喜欢
                         collect: 215,//收藏
                         Integral: 2555,//积分
@@ -400,7 +410,7 @@ angular.module("app", relyOn)
                         type: 1,
                         name: "锅",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 235,//收藏
                         Integral: 2455,//积分
@@ -412,7 +422,7 @@ angular.module("app", relyOn)
                         type: 0,
                         name: "王胜利",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 125,//收藏
                         Integral: 2655,//积分
@@ -424,7 +434,7 @@ angular.module("app", relyOn)
                         type: 1,
                         name: "邓杨",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 235,//收藏
                         Integral: 2525,//积分
@@ -436,7 +446,7 @@ angular.module("app", relyOn)
                         type: 1,
                         name: "周公来",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 235,//收藏
                         Integral: 2525,//积分
@@ -448,7 +458,7 @@ angular.module("app", relyOn)
                         type: 1,
                         name: "曾国强",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 25,//收藏
                         Integral: 2255,//积分
@@ -460,7 +470,7 @@ angular.module("app", relyOn)
                         type: 1,
                         name: "李小建",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 265,//收藏
                         Integral: 2575,//积分
@@ -472,7 +482,7 @@ angular.module("app", relyOn)
                         type: 1,
                         name: "李小建",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 265,//收藏
                         Integral: 2575,//积分
@@ -484,7 +494,7 @@ angular.module("app", relyOn)
                         type: 1,
                         name: "李小建",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 265,//收藏
                         Integral: 2575,//积分
@@ -496,7 +506,7 @@ angular.module("app", relyOn)
                         type: 1,
                         name: "李小建",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 265,//收藏
                         Integral: 2575,//积分
@@ -508,7 +518,7 @@ angular.module("app", relyOn)
                         type: 0,
                         name: "平底锅",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 265,//收藏
                         Integral: 2575,//积分
@@ -520,7 +530,7 @@ angular.module("app", relyOn)
                         type: 0,
                         name: "平底锅",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 265,//收藏
                         Integral: 2575,//积分
@@ -532,7 +542,7 @@ angular.module("app", relyOn)
                         type: 0,
                         name: "平底锅",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 112,//喜欢
                         collect: 265,//收藏
                         Integral: 2575,//积分
@@ -544,7 +554,7 @@ angular.module("app", relyOn)
                         type: 0,
                         name: "平底锅",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 12,//喜欢
                         collect: 265,//收藏
                         Integral: 2575,//积分
@@ -556,7 +566,7 @@ angular.module("app", relyOn)
                         type: 0,
                         name: "平底锅",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 12,//喜欢
                         collect: 265,//收藏
                         Integral: 2575,//积分
@@ -568,7 +578,7 @@ angular.module("app", relyOn)
                         type: 0,
                         name: "平底锅",
                         img: "img/QQ20150619134531.jpg",
-                        banner:["img/2222.jpg","img/840.png","img/111.jpg","img/banner.jpg","img/sss.jpg"],
+                        banner: ["img/2222.jpg", "img/840.png", "img/111.jpg", "img/banner.jpg", "img/sss.jpg"],
                         like: 12,//喜欢
                         collect: 265,//收藏
                         Integral: 2575,//积分
@@ -590,7 +600,7 @@ angular.module("app", relyOn)
 
 
             function newState(state) {
-                alert("as"+state);
+                alert("as" + state);
             }
 
             //创建一个查询器
@@ -672,30 +682,32 @@ angular.module("app", relyOn)
                 }
             ];
 
-            $scope.hide = function(){
+            $scope.hide = function () {
                 $mdDialog.hide();
             };
-            $scope.cancel = function(){
+            $scope.cancel = function () {
                 $mdDialog.cancel();
             };
-            $scope.answer = function(answer){
+            $scope.answer = function (answer) {
                 $mdDialog.hide(answer);
             };
-            $scope.infoGoods = function(item,event){
-                console.log(event);
+            $scope.infoGoods = function (item, event) {
+                //console.log(event);
+                console.log($mdMedia('sm')||$mdMedia('md'));
                 $mdDialog.show({
-                    templateUrl:"tmpl/dialog.html",
-                    parent:angular.element(document.body),
-                    targetEvent:event,
-                    locals:{items:item},
-                    scope:$scope,
-                    preserveScope:true,
-                    clickOutsideToClose:true,
-                    fullscreen:false,
-                    controller:DialogController
-                }).then(function(answer){//点击确定事件
-
-                },function(){//取消dialog事件
+                    templateUrl: "tmpl/dialog.html",
+                    parent: angular.element(document.body),
+                    targetEvent: event,
+                    locals: {items: item},
+                    scope: $scope,
+                    preserveScope: true,
+                    clickOutsideToClose: true,
+                    fullscreen:$scope.customFullscreen&&($mdMedia('sm')||$mdMedia('md')),
+                    controller: DialogController
+                }).then(function (answer) {//点击确定事件
+                    $scope.addGoods(answer);
+                    $scope.hide();
+                }, function () {//取消dialog事件
 
                 })
             };
@@ -754,7 +766,6 @@ angular.module("app", relyOn)
                     note: "积分过生日",
                     color: "#E1D0B6"
                 }
-
             ];
             $scope.subnav2 = [
                 {
@@ -801,11 +812,11 @@ angular.module("app", relyOn)
                 }
             ];
 
-        //   animated
+            //   animated
 
         }]);
 
-function DialogController($scope,$mdDialog,items){
+function DialogController($scope, $mdDialog, items) {
     $scope.items = items;
     //$scope.hide = function(){
     //    $mdDialog.hide();

@@ -109,15 +109,21 @@
                                 </md-button>
                             </div>
                             <md-card-actions layout="row"  layout-align="center center">
-                                <section layout="row" layout-nowarp layout-align="center center" flex>
-                                    <!--ng-click="addGoods(item)"-->
+                                <div layout="row"  layout-align="center center" flex>
                                     <md-button class="md-warn md-hue-1 md-raised left groupX" flex="50" ng-click="addGoods(item)">
                                         加入购物车
                                     </md-button>
                                     <md-button class="right md-warn md-hue-1 md-raised groupX" flex="50" ng-click="infoGoods(item,$event)">
                                         查看详情
                                     </md-button>
-                                </section>
+
+                                    <!--<md-button class="md-raised left  md-warn md-hue-1" flex="50" ng-click="addGoods(item)">-->
+                                        <!--加入购物车-->
+                                    <!--</md-button>-->
+                                    <!--<md-button class="md-raised right  md-warn md-hue-1" flex="50" ng-click="infoGoods(item,$event)">-->
+                                        <!--查看详情-->
+                                    <!--</md-button>-->
+                                </div>
                             </md-card-actions>
                         </md-card-content>
                     </md-card>

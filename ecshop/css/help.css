@@ -161,3 +161,11 @@ md-divider.divider{
 .carousel{
     /*overflow: hidden !important;*/
 }
+md-divider.md-divider-accent{
+    border:1px solid #f5f5f5;
+}
+md-dialog.md-dialog-fullscreen {
+    min-height:100%;
+    min-width: 100%;
+    border-radius: 0
+}
