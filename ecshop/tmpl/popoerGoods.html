@@ -2,7 +2,7 @@
     <md-input-container class="md-icon-float md-block">
         <label>收货人姓名</label>
         <md-icon class="text-default">account_box</md-icon>
-        <input ng-model="user.name" name="username" required ng-minlength="2" ng-maxlength="7" ng-model-options="{ updateOn:'blur'}">
+        <input ng-model="user.name" type="text" name="username" required ng-minlength="2" ng-maxlength="7" ng-model-options="{ updateOn:'blur'}">
     </md-input-container>
     <div ng-messages="formGoods.username.$error" class="text-warn" ng-show="formGoods.$submitted">
         <div ng-message="required">必填</div>

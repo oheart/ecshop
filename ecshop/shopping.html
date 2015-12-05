@@ -4,7 +4,7 @@
     <title>积分商城</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="bower_components/flat-ui/dist/css/flat-ui.min.css" rel="stylesheet"/>
     <link href="bower_components/angular-material/angular-material.min.css" rel="stylesheet">
     <link href="bower_components/angular-material/angular-material.layouts.min.css" rel="stylesheet">
@@ -19,22 +19,215 @@
     <link href="css/help.css" rel="stylesheet">
     <link href="css/base.css" rel="stylesheet">
     <link href="css/ng-animate.css" rel="stylesheet">
+    <style>
+        .loader {
+            width: 130px;
+            height: 170px;
+            position: relative;
+        }
+        .loader::before, .loader::after {
+            content: "";
+            width: 0;
+            height: 0;
+            position: absolute;
+            bottom: 30px;
+            left: 15px;
+            z-index: 1;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 20px solid #1b2a33;
+            -webkit-transform: scale(0);
+            -ms-transform: scale(0);
+            transform: scale(0);
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+        .loader::after {
+            border-right: 15px solid transparent;
+            border-bottom: 20px solid #162229;
+        }
+        .loader .getting-there {
+            width: 120%;
+            text-align: center;
+            position: absolute;
+            bottom: 0;
+            left: -7%;
+            font-family: "Lato";
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: white;
+        }
+        .loader .binary {
+            width: 100%;
+            height: 140px;
+            display: block;
+            color: white;
+            position: absolute;
+            top: 0;
+            left: 15px;
+            z-index: 2;
+            overflow: hidden;
+        }
+        .loader .binary::before, .loader .binary::after {
+            font-family: "Lato";
+            font-size: 24px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+        }
+        .loader .binary:nth-child(1)::before {
+            content: "$";
+            -webkit-animation: a 1.1s linear infinite;
+            animation: a 1.1s linear infinite;
+        }
+        .loader .binary:nth-child(1)::after {
+            content: "$";
+            -webkit-animation: b 1.3s linear infinite;
+            animation: b 1.3s linear infinite;
+        }
+        .loader .binary:nth-child(2)::before {
+            content: "￥";
+            -webkit-animation: c 0.9s linear infinite;
+            animation: c 0.9s linear infinite;
+        }
+        .loader .binary:nth-child(2)::after {
+            content: "￥";
+            -webkit-animation: d 0.7s linear infinite;
+            animation: d 0.7s linear infinite;
+        }
+        .loader.JS_on::before, .loader.JS_on::after {
+            -webkit-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
+        }
+
+        @-webkit-keyframes a {
+            0% {
+                -webkit-transform: translate(30px, 0) rotate(30deg);
+                transform: translate(30px, 0) rotate(30deg);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translate(30px, 150px) rotate(-50deg);
+                transform: translate(30px, 150px) rotate(-50deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes a {
+            0% {
+                -webkit-transform: translate(30px, 0) rotate(30deg);
+                transform: translate(30px, 0) rotate(30deg);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translate(30px, 150px) rotate(-50deg);
+                transform: translate(30px, 150px) rotate(-50deg);
+                opacity: 1;
+            }
+        }
+        @-webkit-keyframes b {
+            0% {
+                -webkit-transform: translate(50px, 0) rotate(-40deg);
+                transform: translate(50px, 0) rotate(-40deg);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translate(40px, 150px) rotate(80deg);
+                transform: translate(40px, 150px) rotate(80deg);
+                opacity: 1;
+            }
+        }
+        @keyframes b {
+            0% {
+                -webkit-transform: translate(50px, 0) rotate(-40deg);
+                transform: translate(50px, 0) rotate(-40deg);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translate(40px, 150px) rotate(80deg);
+                transform: translate(40px, 150px) rotate(80deg);
+                opacity: 1;
+            }
+        }
+        @-webkit-keyframes c {
+            0% {
+                -webkit-transform: translate(70px, 0) rotate(10deg);
+                transform: translate(70px, 0) rotate(10deg);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translate(60px, 150px) rotate(70deg);
+                transform: translate(60px, 150px) rotate(70deg);
+                opacity: 1;
+            }
+        }
+        @keyframes c {
+            0% {
+                -webkit-transform: translate(70px, 0) rotate(10deg);
+                transform: translate(70px, 0) rotate(10deg);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translate(60px, 150px) rotate(70deg);
+                transform: translate(60px, 150px) rotate(70deg);
+                opacity: 1;
+            }
+        }
+        @-webkit-keyframes d {
+            0% {
+                -webkit-transform: translate(30px, 0) rotate(-50deg);
+                transform: translate(30px, 0) rotate(-50deg);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translate(45px, 150px) rotate(30deg);
+                transform: translate(45px, 150px) rotate(30deg);
+                opacity: 1;
+            }
+        }
+        @keyframes d {
+            0% {
+                -webkit-transform: translate(30px, 0) rotate(-50deg);
+                transform: translate(30px, 0) rotate(-50deg);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translate(45px, 150px) rotate(30deg);
+                transform: translate(45px, 150px) rotate(30deg);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body ng-controller="myCtrl" md-theme="default">
 
 <ui-view>
-    <div layout="row" layout-sm="column" class="full-width full-height" layout-align="center center" style="">
-        <md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>
+    <!--<div layout="row" layout-sm="column" class="full-width full-height" layout-align="center center" style="">-->
+        <!--<md-progress-circular md-mode="indeterminate" md-diameter="100"></md-progress-circular>-->
+    <!--</div>-->
+    <div class="full-height full-width" layout layout-align="center center" style="background: #2D4654;">
+        <div class="loader JS_on">
+            <span class="binary"></span>
+            <span class="binary"></span>
+            <span class="getting-there">稍等片刻...</span>
+        </div>
     </div>
 </ui-view>
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
-<script src="//cdn.bootcss.com/prefixfree/1.0.7/prefixfree.min.js"></script>
+<script src="bower_components/prefixfree/prefixfree.min.js"></script>
 <script src="bower_components/lodash/lodash.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
 <script src="bower_components/flat-ui/dist/js/flat-ui.min.js"></script>
-<script src="//cdn.bootcss.com/angular.js/1.4.7/angular.min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
 
 <script src="bower_components/angular-touch/angular-touch.min.js"></script>
 <script src="bower_components/angular-carousel/dist/angular-carousel.min.js"></script>
@@ -47,17 +240,10 @@
 
 <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-
-<script src="bower_components/angular-aria/angular-aria.min.js"></script>
-<script src="bower_components/angular-animate/angular-animate.min.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
-<script src="//cdn.bootcss.com/angular.js/1.4.7/angular-resource.min.js"></script>
-<script src="//cdn.bootcss.com/angular.js/1.4.7/angular-messages.min.js"></script>
-
 <script src="bower_components/angular-lazy-img/release/angular-lazy-img.min.js"></script>
 
-<!--<script src="//cdn.bootcss.com/angular-material/1.0.0-rc4/angular-material.min.js"></script>-->
-<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script src="//cdn.bootcss.com/angular-material/1.0.0-rc6/angular-material.min.js"></script>
+<!--<script src="bower_components/angular-material/angular-material.js"></script>-->
 
 <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
 

@@ -18,11 +18,21 @@ input[type='search'],.text-primary{
 .text-default{
     color: rgba(0,0,0,0.26) !important;
 }
+.text-black{
+    color: rgba(15, 15, 15, 0.91) !important;
+}
 .md-input-focused>md-icon.text-default{
     color: rgb(33, 150, 243) !important;
 }
 .md-input-focused.md-input-invalid>md-icon.text-default{
     color:#F44336 !important;
+}
+md-input-container{
+    background-image:none !important;
+}
+
+.bg-white,md-virtual-repeat-container{
+    background-color: rgb(255,255,255) !important;
 }
 label{
     margin-bottom: 0;

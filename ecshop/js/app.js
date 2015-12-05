@@ -119,18 +119,18 @@ angular.module("app", relyOn)
             }
         }
     })
-    .controller("myCtrl", ["$scope", "$window", "$q", "$timeout", "$mdConstant", "$mdDialog", "$state", "tool", "$cookies", "$cookieStore", "$http", "$rootScope", "$mdMedia",
-        function ($scope, $window, $q, $timeout, $mdConstant, $mdDialog, $state, tool, $cookies, $cookieStore, $http, $rootScope, $mdMedia) {
+    .controller("myCtrl", ["$scope", "$window", "$q", "$timeout", "$mdConstant", "$mdDialog", "$state", "tool", "$cookies", "$cookieStore", "$http", "$rootScope", "$mdMedia", "$interval",
+        function ($scope, $window, $q, $timeout, $mdConstant, $mdDialog, $state, tool, $cookies, $cookieStore, $http, $rootScope, $mdMedia, $interval) {
 
             $scope.userConfig = {};
             $scope.user = {};
             $scope.sweet = {};
             $scope.ghover = false;
             $scope.submited = false;
-            $scope.customFullscreen = $mdMedia('sm')||$mdMedia('md');
-            $scope.$watch(function(){
-                return $mdMedia('sm')||$mdMedia('md');
-            },function(boolean){
+            $scope.customFullscreen = $mdMedia('sm') || $mdMedia('md');
+            $scope.$watch(function () {
+                return $mdMedia('sm') || $mdMedia('md');
+            }, function (boolean) {
                 $scope.customFullscreen = (boolean === true);
             });
 
@@ -227,7 +227,7 @@ angular.module("app", relyOn)
             $scope.showSwal.error = function () {
                 swal("不好意思", "添加失败", "error");
             };
-            $scope.showSwal.watting = function(){
+            $scope.showSwal.watting = function () {
                 swal("再逛逛其他商品吧!");
             };
 
@@ -275,7 +275,7 @@ angular.module("app", relyOn)
                     $scope.getLength();
                     $scope.getIntegral();
                 } else {
-                    $window.alert("商品失效了!");
+                    $scope.showSwal.error();
                 }
             };
             //增加
@@ -286,7 +286,7 @@ angular.module("app", relyOn)
                     $scope.getLength();
                     $scope.getIntegral();
                 } else {
-                    $window.alert("商品失效了!");
+                    $scope.showSwal.error();
                 }
             };
             //减少
@@ -303,10 +303,10 @@ angular.module("app", relyOn)
                         $scope.getLength();
                         $scope.getIntegral();
                     } else {
-                        $window.alert("商品失效了!");
+                        $scope.showSwal.error();
                     }
                 } else {
-                    $window.alert("商品失效了!");
+                    $scope.showSwal.error();
                 }
             };
 
@@ -604,8 +604,9 @@ angular.module("app", relyOn)
             }
 
             //创建一个查询器
-            function querySearch(query) {
+            function querySearch(query ,event) {
                 //如果有搜索值就进行过滤@fn ->createFilterFor(query)
+                console.log(event);
                 var results = query ? $scope.self.states.filter(createFilterFor(query)) : $scope.self.states, deferred;
                 //         console.log(results);
                 if ($scope.self.boolean) {
@@ -627,12 +628,40 @@ angular.module("app", relyOn)
             }
 
             function searchTextChange(text) {
-                //console.log(text);
+                $scope.queryText = text;
             }
 
+            //查询商品
+            //$scope.searchGoods = function(searchText){
+            //  console.log($scope.self.states);
+            //    if(searchText){
+            //        angular.forEach($scope.self.states,function(state){
+            //            //angular.equals(searchText,state.name)
+            //        });
+            //    }else{
+            //        $scope.showSwal.error();
+            //    }
+            //};
             function selectedItemChange(item) {
                 /*  if(item) console.log(JSON.stringify(item));
                  else return false;*/
+                //console.log($mdMedia('sm') || $mdMedia('md'));
+                //$mdDialog.show({
+                //    templateUrl: "tmpl/dialog.html",
+                //    parent: angular.element(document.body),
+                //    //targetEvent: event,
+                //    locals: {items: item},
+                //    scope: $scope,
+                //    preserveScope: true,
+                //    clickOutsideToClose: true,
+                //    fullscreen: $scope.customFullscreen && ($mdMedia('sm') || $mdMedia('md')),
+                //    controller: DialogController
+                //}).then(function (answer) {//点击确定事件
+                //    $scope.addGoods(answer);
+                //    $scope.hide();
+                //}, function () {//取消dialog事件
+                //
+                //})
             }
 
             $scope.self = {
@@ -693,7 +722,7 @@ angular.module("app", relyOn)
             };
             $scope.infoGoods = function (item, event) {
                 //console.log(event);
-                console.log($mdMedia('sm')||$mdMedia('md'));
+                console.log($mdMedia('sm') || $mdMedia('md'));
                 $mdDialog.show({
                     templateUrl: "tmpl/dialog.html",
                     parent: angular.element(document.body),
@@ -702,7 +731,7 @@ angular.module("app", relyOn)
                     scope: $scope,
                     preserveScope: true,
                     clickOutsideToClose: true,
-                    fullscreen:$scope.customFullscreen&&($mdMedia('sm')||$mdMedia('md')),
+                    fullscreen: $scope.customFullscreen && ($mdMedia('sm') || $mdMedia('md')),
                     controller: DialogController
                 }).then(function (answer) {//点击确定事件
                     $scope.addGoods(answer);

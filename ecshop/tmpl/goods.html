@@ -6,7 +6,6 @@
                     <!--<md-icon>settings</md-icon>-->
                 <!--</md-button>-->
                 <!--<nav>-->
-
                 <!--</nav>-->
             <!--</div>-->
         <!--</md-toolbar>-->
@@ -20,32 +19,49 @@
                 <!--</md-card-header>-->
                 <img lazy-img="{{item.img}}" ng-src="{{item.img}}" class="md-card-image" alt="{{item.name}}"/>
                 <md-card-title>
-                    <md-card-title-text>
-                        <span class="md-headline">{{item.name}}
-                            <md-icon alt="生日特供" ng-if="item.type==0" class="pull-right pointer" style="margin: 0">
-                                <md-tooltip ng-if="item.type==0">生日特供</md-tooltip>
-                                cake
-                            </md-icon>
-                        </span>
+                    <md-card-title-text >
+                        <div class="md-headline" layout="row" class="full-width" layout-align="space-between center">
+                            <span class="md-headline">{{item.name}}</span>
+                            <md-button alt="生日特供" ng-if="item.type==0" class="pull-right md-icon-button" style="margin: 0">
+                                <md-icon>
+                                    cake
+                                </md-icon>
+                            </md-button>
+                        </div>
                     </md-card-title-text>
                 </md-card-title>
-                <md-card-content>
-                    <p>积分:<span class="text-warn sub-lg">{{item.Integral}}</span>     <br/>
-                    <span class="sub-str">市场参考价:${{item.money}}</span></p>
+                <md-card-content layout="column">
+                    <!-- case 2 -->
+                    <div flex>积分:
+                        <span class="text-warn sub-lg">{{item.Integral}}</span>
+                        <md-button class="md-icon-button pull-right" aria-label="喜欢" tooltip-placement="left" uib-tooltip="受到{{item.like}}人的喜欢" style="margin: 0">
+                            <md-icon>favorite</md-icon>
+                        </md-button>
+                    </div>
+                    <div flex layout="row" layout-align="space-between center" style="height: 37px;" class="full-width">
+                        <span class="sub-str">市场参考价:￥{{item.money}}</span>
+                        <md-button class="md-icon-button" aria-label="收藏" tooltip-placement="left" uib-tooltip="被{{item.collect}}人收藏" style="margin: 0">
+                            <md-icon>grade</md-icon>
+                        </md-button>
+                    </div>
+                    <md-card-actions layout="row"  layout-align="center center">
+                        <div layout="row"  layout-align="center center" flex>
+                            <md-button class="md-warn md-hue-1 md-raised left groupX" flex="50" ng-click="addGoods(item)" ng-disabled="item.type==0">
+                                加入购物车
+                            </md-button>
+                            <md-button class="right md-warn md-hue-1 md-raised groupX" flex="50" ng-click="infoGoods(item,$event)" ng-disabled="item.type==0">
+                                查看详情
+                            </md-button>
+
+                            <!--<md-button class="md-raised left  md-warn md-hue-1" flex="50" ng-click="addGoods(item)">-->
+                            <!--加入购物车-->
+                            <!--</md-button>-->
+                            <!--<md-button class="md-raised right  md-warn md-hue-1" flex="50" ng-click="infoGoods(item,$event)">-->
+                            <!--查看详情-->
+                            <!--</md-button>-->
+                        </div>
+                    </md-card-actions>
                 </md-card-content>
-                <md-card-actions layout="row" layout-align="end start">
-                    <md-button class="md-warn md-hue-2 md-raised md-cornered" flex>
-                        加入购物车
-                    </md-button>
-                    <md-button class="md-icon-button" aria-label="喜欢">
-                        <md-tooltip md-direction="top">受到{{item.like}}人的喜欢</md-tooltip>
-                        <md-icon>favorite</md-icon>
-                    </md-button>
-                    <md-button class="md-icon-button" aria-label="收藏">
-                        <md-tooltip md-direction="top">被{{item.collect}}人收藏</md-tooltip>
-                        <md-icon>grade</md-icon>
-                    </md-button>
-                </md-card-actions>
             </md-card>
         </md-content>
     </section>

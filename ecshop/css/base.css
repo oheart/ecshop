@@ -374,6 +374,9 @@ form.form-group-lg>md-input-container{
 .goods-card{
     border:1px dashed #2196f3;
 }
+.md-autocomplete-suggestions>li{
+    padding-left:0;
+}
 
 /*
 
@@ -391,3 +394,11 @@ button.right{
     margin-left: 0 !important;
     padding-left: 0 !important;
 }
+
+md-input-container.md-icon-float.md-block>label{
+    margin-left: 30px;
+}
+md-input-container.md-icon-float.md-block>input{
+    padding-left:30px;
+}
+
